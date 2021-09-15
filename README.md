@@ -5,11 +5,13 @@ Patch notes
 
 **v1.1.0**
 
-ADDED
+**Added**
 Updated main.py file
 Logs setting
 Development overview setting
-CHANGED
+
+**Changed**
 Changed the version variable to v1.1.0 (duh)
-REMOVED
+
+**Removed**
 -

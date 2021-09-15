@@ -130,7 +130,6 @@ while loop_variable == "TRUE":
                 enter()
                 print("What do you want to console-log? Note that you can log only one thing at a time.")
                 cs_input = input("> ")
-                UserWarning("[console-logged by user] " + cs_input + "")
                 ct()
                 checkdate()
                 print("[logged in] | Home | > APPS < | Settings | " + current_time +"")

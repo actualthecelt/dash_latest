@@ -1,0 +1,6 @@
+ct()
+print("/// !STILL IN PROGRESS! ///")
+print("")
+print("Type anything into the console to head back to home.")
+dummy = input("> ")
+pass

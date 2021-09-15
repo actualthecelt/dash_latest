@@ -14,4 +14,4 @@ Development overview setting
 Changed the version variable to v1.1.0 (duh)
 
 **Removed**
--
+None

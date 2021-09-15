@@ -1,20 +1,30 @@
 import os
 import time as s
-from datetime import datetime
+from datetime import date, datetime
 import webbrowser
 import sys
+import inspect
 
 # setting up variables etc.
 os.environ['API_USER'] = 'd.koot'
 os.environ['API_PASSWORD'] = '1919##'
 
-version = "v1.1.0"
+version = "v1.1.1"
 now = datetime.now()
+current_time = now.strftime("%H:%M:%S")
 cs_input = ""
-allSettings = ("logs", "devoverview")
+allSettings = ("logs", "devoverview", "back")
+allVariables = locals()
 
 USER = os.getenv('API_USER')
 PASSWORD = os.environ.get('API_PASSWORD')
+
+def exists_var(var_name):
+    frame = inspect.currentframe()
+    try:
+        return var_name in frame.f_back.f_locals or var_name in globals()
+    finally:
+        del frame
 
 def ct():
     os.system('clear')
@@ -22,9 +32,13 @@ def ct():
 def enter():
     print("")
 
+def checkdate():
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+
 # code stuff
 ct()
-print("> LOGIN < | Home | Apps | Settings")
+print("> LOGIN < | Home | Apps | Settings |" + current_time + "")
 print("Welcome back, please enter your credentials")
 
 insertedUser = input("Username: ")
@@ -53,10 +67,10 @@ ct()
 
 while loop_variable == "TRUE":
     ct()
-    current_time = now.strftime("%H:%M:%S")
+    checkdate()
     print("[logged in] | > HOME < | Apps | Settings | " + current_time +"")
     print("Welcome back, " + insertedUser + ".")
-    print("")
+    enter()
 
     print("Choose an action to perform. Type 'help' for a list of commands.")
     cmd = input("> ")
@@ -67,7 +81,7 @@ while loop_variable == "TRUE":
         print("     home | opens the 'Home' tab")
         print("     apps | opens the 'Apps' tab")
         print(" settings | opens the 'Settings' tab")
-        print("")
+        enter()
         print("Type anything into the console to head back to home.")
         headbackHome = input("> ")
     elif cmd == "home":
@@ -75,21 +89,20 @@ while loop_variable == "TRUE":
     elif cmd == "apps":
         while cmd == "apps":
             ct()
-            current_time = now.strftime("%H:%M:%S")
+            checkdate()
             print("[logged in] | Home | > APPS < | Settings | " + current_time +"")
-            print("")
+            enter()
             print("Type 'back' to head back to the main console.")
-            print("")
-
+            enter()
             print("Console-logger                 (cs) | console-log anything for later use (EXPIRIMENTAL)")
             print("Browser redirector             (br) | Speaks for itself. Type anything into here and it will automatically redirect you to Google with given input.")
             print("Current dashboard information (cdi) | Shows current information about the dashboard.")
 
-            print("")
+            enter()
             app_selector = input("> ")
             if app_selector == "br":
                 ct()
-                current_time = now.strftime("%H:%M:%S")
+                checkdate()
                 print("[logged in] | Home | > APPS < | Settings | " + current_time +"")
                 print("                     -> > BROWSER REDIRECTOR < | Current dashboard information | Console-logger")
                 print("")
@@ -97,32 +110,34 @@ while loop_variable == "TRUE":
                 webbrowser.open_new("https://www.google.com/search?client=firefox-b-d&q=" + insertURL + "")
             elif app_selector == "cdi":
                 ct()
-                current_time = now.strftime("%H:%M:%S")
+                checkdate()
                 print("[logged in] | Home | > APPS < | Settings | " + current_time +"")
                 print("                     -> Browser redirector | > CURRENT DASHBOARD INFORMATION < | Console-logger")
-                print("")
+                enter()
                 print("     Version: " + version + "")
                 print("   Developer: The Celt")
                 print("Current time: " + current_time + "")
                 print("Current user: " + insertedUser + "")
                 print("Coding language: Python " + sys.version + "")
-                print("")
+                enter()
                 print("Type anything into the console to head back to the APPS tab.")
                 headbackApps = input("> ")
             elif app_selector == "cs":
                 ct()
+                checkdate()
                 print("[logged in] | Home | > APPS < | Settings | " + current_time +"")
                 print("                     -> Browser redirector | Current dashboard information | > CONSOLE-LOGGER <")
-                print("")
+                enter()
                 print("What do you want to console-log? Note that you can log only one thing at a time.")
                 cs_input = input("> ")
                 UserWarning("[console-logged by user] " + cs_input + "")
                 ct()
+                checkdate()
                 print("[logged in] | Home | > APPS < | Settings | " + current_time +"")
                 print("                     -> Browser redirector | Current dashboard information | > CONSOLE-LOGGER <")
-                print("")
+                enter()
                 print("Logged '" + cs_input + "'. Go to the SETTINGS tab to view your logged information.")
-                print("")
+                enter()
                 print("Type anything into the console to head back to the APPS tab.")
                 headbackCS = input("> ")
             elif app_selector == "back":
@@ -131,28 +146,29 @@ while loop_variable == "TRUE":
     elif cmd == "settings":
         while cmd == "settings":
             ct()
-            current_time = now.strftime("%H:%M:%S")
+            checkdate()
             print("[logged in] | Home | Apps | > SETTINGS < | " + current_time +"")
-            print("")
+            enter()
             print("Type 'back' into the console to head back to home.")
-            print("")
+            enter()
             print("logs         | view saved information user entered in the CONSOLE-LOGGER app.")
             print("devoverview  | overview of all ongoing development")
-            print("")
+            enter()
             setting_selector = input("> ")
             if setting_selector == "logs":
                 ct()
+                checkdate()
                 if cs_input != "":
                     print("[logged in] | Home | Apps | > SETTINGS < | " + current_time +"")
                     print("                             -> > LOGS < | Development overview")
-                    print("")
+                    enter()
                     print("Logged by user " + insertedUser + ".")
-                    print("")
+                    enter()
                     print("'" + cs_input + "'")
-                    print("")
+                    enter()
                     print("Type anything into the console to head back to the SETTINGS tab.")
+
                 elif cs_input == "":
-                    ct()
                     print("[logged in] | Home | Apps | > SETTINGS < | " + current_time +"")
                     print("                             -> > LOGS < | Development overview")
                     enter()
@@ -163,12 +179,18 @@ while loop_variable == "TRUE":
                 headbackSETTINGS = input("> ")
             elif setting_selector == "devoverview":
                 ct()
+                checkdate()
                 print("[logged in] | Home | Apps | > SETTINGS < | " + current_time +"")
                 print("                             -> Logs | > DEVELOPMENT OVERVIEW <")
                 enter()
                 print("OVERALL DEVELOPMENT OVERVIEW")
                 enter()
                 print("Version: " + version + "")
+                enter()
+                print("KNOWN BUGS")
+                print("--")
+                print("Time variable displaying time during launch program instead of showing realtime")
+                enter()
                 enter()
                 print("BACKLOG")
                 print("--")
@@ -197,9 +219,6 @@ while loop_variable == "TRUE":
                 enter()
                 print("Type anything into the console to head back to the SETTINGS tab.")
                 headbackSETTINGS = input("> ")
-
-
-                #               gonna put all available settings down below, dont worry
             elif setting_selector not in allSettings:
                 ct()
                 print("Given input is not an (available) setting.")

@@ -8,7 +8,7 @@ import sys
 os.environ['API_USER'] = 'd.koot'
 os.environ['API_PASSWORD'] = '1919##'
 
-version = "v1.0"
+version = "v1.1.0"
 now = datetime.now()
 cs_input = ""
 allSettings = ("logs", "devoverview")
@@ -168,7 +168,7 @@ while loop_variable == "TRUE":
                 enter()
                 print("OVERALL DEVELOPMENT OVERVIEW")
                 enter()
-                print("Version: v1.0")
+                print("Version: " + version + "")
                 enter()
                 print("BACKLOG")
                 print("--")
@@ -184,9 +184,10 @@ while loop_variable == "TRUE":
                 enter()
                 print("IN PROGRESS")
                 print("--")
-                print("Setting up Github page")
+                
                 print("Adding a developer mode to the SETTINGS tab")
                 print("Implementing the enter() function into all code instead of using print()")
+                print("Setting up Github page")
                 enter()
                 enter()
                 print("DONE")

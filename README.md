@@ -4,6 +4,7 @@ Been working on a CLI dashboard for over a year, decided to rework everything fr
 Patch notes
 
 **v1.1.0**
+
 ADDED
 Updated main.py file
 Logs setting

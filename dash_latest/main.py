@@ -9,11 +9,12 @@ import inspect
 os.environ['API_USER'] = 'd.koot'
 os.environ['API_PASSWORD'] = '1919##'
 
-version = "v1.1.1"
+version = "v1.1.2"
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 cs_input = ""
 allSettings = ("logs", "devoverview", "back")
+allCommands = ("home", "back", "settings", "apps", "kill", "help")
 allVariables = locals()
 
 USER = os.getenv('API_USER')
@@ -36,9 +37,12 @@ def checkdate():
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
 
+def rest(n):
+    s.sleep(n)
+
 # code stuff
 ct()
-print("> LOGIN < | Home | Apps | Settings |" + current_time + "")
+print("> LOGIN < | Home | Apps | Settings | " + current_time + "")
 print("Welcome back, please enter your credentials")
 
 insertedUser = input("Username: ")
@@ -62,7 +66,7 @@ else:
     exit()
 
 print("Loading module...")
-s.sleep(0.3)
+rest(0.3)
 ct()
 
 while loop_variable == "TRUE":
@@ -74,18 +78,21 @@ while loop_variable == "TRUE":
 
     print("Choose an action to perform. Type 'help' for a list of commands.")
     cmd = input("> ")
-
+    # help
     if cmd == "help":
         ct()
         print("List of commands")
         print("     home | opens the 'Home' tab")
         print("     apps | opens the 'Apps' tab")
+        print("     kill | shuts down the program")
         print(" settings | opens the 'Settings' tab")
         enter()
         print("Type anything into the console to head back to home.")
         headbackHome = input("> ")
+    # home cmd
     elif cmd == "home":
         pass
+    # apps
     elif cmd == "apps":
         while cmd == "apps":
             ct()
@@ -142,6 +149,7 @@ while loop_variable == "TRUE":
             elif app_selector == "back":
                 cmd = "home"
                 pass
+    # settings
     elif cmd == "settings":
         while cmd == "settings":
             ct()
@@ -150,8 +158,9 @@ while loop_variable == "TRUE":
             enter()
             print("Type 'back' into the console to head back to home.")
             enter()
-            print("logs         | view saved information user entered in the CONSOLE-LOGGER app.")
-            print("devoverview  | overview of all ongoing development")
+            print("        logs | view saved information user entered in the CONSOLE-LOGGER app.")
+            #print("     protips | enables/disables protips")
+            print(" devoverview | overview of all ongoing development")
             enter()
             setting_selector = input("> ")
             if setting_selector == "logs":
@@ -188,12 +197,12 @@ while loop_variable == "TRUE":
                 enter()
                 print("KNOWN BUGS")
                 print("--")
-                print("Time variable displaying time during launch program instead of showing realtime")
                 enter()
                 enter()
                 print("BACKLOG")
                 print("--")
                 print("Put all functions, apps, tabs etc. in seperate python files and implement them into the main.py file, as functions to simplify code")
+                print("Add a developer mode to the SETTINGS tab")
                 print("Website (not sure yet)")
                 print("Get more devs on the project (undecided as of now)")
                 enter()
@@ -205,15 +214,15 @@ while loop_variable == "TRUE":
                 enter()
                 print("IN PROGRESS")
                 print("--")
-                
-                print("Adding a developer mode to the SETTINGS tab")
-                print("Implementing the enter() function into all code instead of using print()")
-                print("Setting up Github page")
+                print("[BUG] Time variable displaying time during launch program instead of showing realtime")
+                print("Set up a SQLite database for login data, easier access to variables and more")
                 enter()
                 enter()
                 print("DONE")
                 print("--")
                 print("Frame for code, overall project")
+                print("Implementing the enter() function into all code instead of using print()")
+                print("Setting up Github page")
                 enter()
                 enter()
                 print("Type anything into the console to head back to the SETTINGS tab.")
@@ -221,9 +230,19 @@ while loop_variable == "TRUE":
             elif setting_selector not in allSettings:
                 ct()
                 print("Given input is not an (available) setting.")
-                print("")
+                enter()
                 print("You will be redirected back to the SETTINGS tab in 5 seconds.")
-                s.sleep(5)
+                rest(5)
             elif setting_selector == "back":
                 cmd = "home"
                 pass
+    elif cmd == "kill":
+        ct()
+        print("Shut down the program.")
+        exit()
+    elif cmd not in allCommands:
+        ct()
+        print("Given input is not an (available) command.")
+        enter()
+        print("You will be redirected back to the HOME tab in 5 seconds.")
+        rest(5)
